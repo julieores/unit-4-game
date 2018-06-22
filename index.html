@@ -6,7 +6,7 @@
  <!-- bootstrap link-->
  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 
- <!-- Added link to the jQuery Library -->
+ <!-- link to the jQuery Library -->
  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 </head>
@@ -14,6 +14,16 @@
 show random number btween 19-120, set points to each crystal image, connect crystal number to 
 players score and add to total user score, add 1 to wins if user matches randowm number, add 1 to wins
 or losses, reset game-->
+
+
+<!-- var wins = 0
+var losses = 0
+var yourTotalScoreIs = 0
+var Score = 0 
+var blue = 0
+var green = 0
+var pink = 0
+var yellow = 0 --> 
 
 <body>
 <div class="container">
@@ -33,24 +43,25 @@ or losses, reset game-->
      <div="row">
      <div class="col">Computer Score</div>
      <div class="row">
-     <div class="col">Wins</div>
+       <div class="col">Wins</div>
       <div class="col">Losses</div>                      
        <div class="w-50"></div>
      </div>
 
 <br> <br/>
 
-<div class="container">
-     <div class="crystals">
-             <img src="assets/images/blue_gem.jpg" width="50" height="40" class=gemImage id="one" alt="Blue Gem">
-             <img src="assets/images/green_gem.jpg" width="50" height="40" class=gemImage id="two" alt="Green Gem">
-             <img src="assets/images/pink_gem.jpg" width="50" height="40" class=gemImage id="three" alt="Pink Gem">
-             <img src="assets/images/yellow_gem.jpg" width="50" height="40" class=gemImage id="four" alt="Yellow Gem">
+     <div class=".crystal-image">
+             <img src="assets/images/blue_gem.jpg" width="50" height="40" class=.crystal-image id="one" alt="Blue Gem">
+             <img src="assets/images/green_gem.jpg" width="50" height="40" class=.crystal-image id="two" alt="Green Gem">
+             <img src="assets/images/pink_gem.jpg" width="50" height="40" class=.crystal-image id="three" alt="Pink Gem">
+             <img src="assets/images/yellow_gem.jpg" width="50" height="40" class=.crystal-image id="four" alt="Yellow Gem">
              
      </div>
    </div>
 
 <br> <br/>
+<br> <br/>
+
 <div class="container">
      <div>Your total score is: </div>
 <br> <br/>
@@ -64,119 +75,85 @@ or losses, reset game-->
 
   <script type="text/javascript">
 
-  var wins = 0
-  var losses = 0
-  var yourTotalScoreIs = 0
-  var Score = 0 
-  var blue = 0
-  var green = 0
-  var pink = 0
-  var yellow = 0 
 
-  // Here we establish the "targetNumber" 
-  var targetNumber = {'Score'+'crstal'}
+  var crystal = 0;
+  var score = 0;
+  var targetNumber = Score + crystal; 
 
-  // Here we set the "number-to-guess" header to match the "targetNumber".
-  // Eventually this will allow us to change the HTML to match the value in the JavaScript.
-  $("#number-to-guess").text(targetNumber);
+   $("#number-to-guess").text(targetNumber);
 
   var counter = 0;
   $(".crystal-image").on("click", function() {
 
-    counter += 10;
+    counter += 1;
 
     alert("Your total score is: " + counter);
 
-   // Here we created some logic to "check" if the click counter matches the targetNumber.
-    // Remember, this click event will be triggered with each click.
-    // With each click the counter will increase by 10 and be re-evaluated against target.
+ 
     if (counter === targetNumber) {
 
-// If the numbers match we'll celebrate the user's win.
-alert("You win!");
-}
 
-/ Here we added an "else if" condition. If the user's counter ever exceeds the targetNumber...
+  alert("You win!");
+  }
+
+
     else if (counter >= targetNumber) {
 
-      // Then they are alerted with a loss.
+    
       alert("You lose!!");
     }
-
-    // This is fine except the way our code is written every user will win first (when they hit 50).
-    // But will then lose immediately if they click again. Seems pointless right?
-    // To make this a game we need to create additional code to randomize the counter and targetScore.
-
-
-    // Here we added an "else if" condition. If the user's counter ever exceeds the targetNumber...
+  
     else if (counter >= targetNumber) {
 
-// Then they are alerted with a loss.
-alert("You lose!!");
+
+    alert("You lose!!");
 }
 
-// Here we created code that selects a number either 10 or 11.
-  // We'll set this number at the start of the "game".
-  var numberOptions = [10, 11];
+  var numberOptions = ["2", "4", "6", "8"];
   var increment = numberOptions[Math.round(Math.random())];
 
   $(".crystal-image").on("click", function() {
 
-    // We'll then increment the counter each time by the randomly selected number.
-    // If the number is 11, then users can win. (11 + 11 + 11 + 11 + 11 = 55)
-    // If the number is 10, then there is no way for the user to win. (10 + 10 + 10 + 10 + 10 = 60)
-    counter += increment;
+    
+    alert("youTotalScoreIs: " + counter);
 
-    alert("New score: " + counter);
-
-    if (counter === targetNumber) {
-      alert("You win!");
-    }
+    if (counter === targetNumber) 
+      alert("You win!!");
+  });
+  
 
     else if (counter >= targetNumber) {
       alert("You lose!!");
 
-       // Now for the hard part. Creating multiple crystals each with their own unique number value.
+    
+  var numberOptions = [2, 4, 6, 8];
+  for (var i = 0; i < numberOptions.length; i++) {
 
-  // We begin by expanding our array to include four options.
-  var numberOptions = [10, 5, 3, 7];
-
-// Next we create a for loop to create crystals for every numberOption.
-for (var i = 0; i < numberOptions.length; i++) {
-
-  // For each iteration, we will create an imageCrystal
   var imageCrystal = $("<img>");
 
-  // First each crystal will be given the class ".crystal-image".
-  // This will allow the CSS to take effect.
   imageCrystal.addClass("crystal-image");
 
-  // Each imageCrystal will be given a src link to the crystal image
-  imageCrystal.attr("src", "http://cdn.playbuzz.com/cdn/35910209-2844-45c0-b099-f4d82878d54f/00261fda-4062-4096-81fd-8cf96b9034e8.jpg");
+// attempt to input inital address; unable to recreate after trials.
 
-  // Each imageCrystal will be given a data attribute called data-crystalValue.
-  // This data attribute will be set equal to the array value.
+   imageCrystal.attr("src", "https://ia-crystal-collector.herokuapp.com/assets/images/blue_gem.jpg";
+   imageCrystal.attr("src", "green_gem.jpg"); 
+   imageCrystal.attr("src", "pink_gem.jpg");
+   imageCrystal.attr ("src", "yellow_gem.jpg");
+             
   imageCrystal.attr("data-crystalvalue", numberOptions[i]);
 
-  // Lastly, each crystal image (with all it classes and attributes) will get added to the page.
+ 
   $("#crystals").append(imageCrystal);
 }
 
-// This time, our click event applies to every single crystal on the page. Not just one.
-$(".crystal-image").on("click", function() {
+  $(".crystal-image").on("click", function() {
 
-  // Determining the crystal's value requires us to extract the value from the data attribute.
-  // Using the $(this) keyword specifies that we should be extracting the crystal value of the clicked crystal.
-  // Using the .attr("data-crystalvalue") allows us to grab the value out of the "data-crystalvalue" attribute.
-  // Since attributes on HTML elements are strings, we must convert it to an integer before adding to the counter
-
+  
   var crystalValue = ($(this).attr("data-crystalvalue"));
   crystalValue = parseInt(crystalValue);
-  // We then add the crystalValue to the user's "counter" which is a global variable.
-  // Every click, from every crystal adds to the global counter.
+
   counter += crystalValue;
 
-  // All of the same game win-lose logic applies. So the rest remains unchanged.
   alert("New score: " + counter);
 
   if (counter === targetNumber) {
@@ -184,13 +161,14 @@ $(".crystal-image").on("click", function() {
   }
 
   else if (counter >= targetNumber) {
-    alert("You lose!!");
+    alert("You lost!");
   }
 
 });
 
-
+// Attempted to recreate from start, then tried to use Crystal Exmaple code for a guide. 
 
 </script>
 </body>
 </html>
+
