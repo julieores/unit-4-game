@@ -78,97 +78,86 @@ var yellow = 0 -->
 
   var crystal = 0;
   var score = 0;
-  var targetNumber = Score + crystal; 
+  var targetNumber = score + crystal; 
 
    $("#number-to-guess").text(targetNumber);
 
   var counter = 0;
-  $(".crystal-image").on("click", function() {
 
-    counter += 1;
+  // $(".crystal-image").on("click", function() {
 
-    alert("Your total score is: " + counter);
+  //   counter += 1;
+
+  //   alert("Your total score is: " + counter);
 
  
-    if (counter === targetNumber) {
+  //   if (counter === targetNumber) {
+  //     alert("You win!");
+  //   } else if (counter >= targetNumber) {
+  //     alert("You lose!!");
+  //   } else if (counter >= targetNumber) {
+  //     alert("You lose!!");
+  //   }
 
-
-  alert("You win!");
-  }
-
-
-    else if (counter >= targetNumber) {
-
-    
-      alert("You lose!!");
-    }
-  
-    else if (counter >= targetNumber) {
-
-
-    alert("You lose!!");
-}
-
-  var numberOptions = ["2", "4", "6", "8"];
-  var increment = numberOptions[Math.round(Math.random())];
-
-  $(".crystal-image").on("click", function() {
-
-    
-    alert("youTotalScoreIs: " + counter);
-
-    if (counter === targetNumber) 
-      alert("You win!!");
-  });
   
 
-    else if (counter >= targetNumber) {
-      alert("You lose!!");
+  // var numberOptions = ["2", "4", "6", "8"];
+  // var increment = numberOptions[Math.round(Math.random())];
 
+  // })
+
+  // $(".crystal-image").on("click", function() {
+
+    
+  //   alert("youTotalScoreIs: " + counter);
+
+  //   if (counter === targetNumber){
+  //     alert("You win!!"); 
+  //   } else if (counter >= targetNumber) {
+  //     alert("You lose!!");
+  //   }
+    
+  // });
     
   var numberOptions = [2, 4, 6, 8];
   for (var i = 0; i < numberOptions.length; i++) {
 
-  var imageCrystal = $("<img>");
+    var imageCrystal = $("<img>");
 
-  imageCrystal.addClass("crystal-image");
+    imageCrystal.addClass("crystal-image");
 
-// attempt to input inital address; unable to recreate after trials.
+  // attempt to input inital address; unable to recreate after trials.
 
-   imageCrystal.attr("src", "https://ia-crystal-collector.herokuapp.com/assets/images/blue_gem.jpg";
-   imageCrystal.attr("src", "green_gem.jpg"); 
-   imageCrystal.attr("src", "pink_gem.jpg");
-   imageCrystal.attr ("src", "yellow_gem.jpg");
-             
-  imageCrystal.attr("data-crystalvalue", numberOptions[i]);
+    imageCrystal.attr("src", "https://ia-crystal-collector.herokuapp.com/assets/images/blue_gem.jpg");
+    imageCrystal.attr("src", "green_gem.jpg"); 
+    imageCrystal.attr("src", "pink_gem.jpg");
+    imageCrystal.attr ("src", "yellow_gem.jpg");
+              
+    imageCrystal.attr("data-crystalvalue", numberOptions[i]);
 
- 
-  $("#crystals").append(imageCrystal);
-}
+  
+    $("#crystals").append(imageCrystal);
+  }
 
   $(".crystal-image").on("click", function() {
 
-  
-  var crystalValue = ($(this).attr("data-crystalvalue"));
-  crystalValue = parseInt(crystalValue);
+    var crystalValue = ($(this).attr("data-crystalvalue"));
+    crystalValue = parseInt(crystalValue);
 
-  counter += crystalValue;
+    counter += crystalValue;
 
-  alert("New score: " + counter);
+    alert("New score: " + counter);
 
-  if (counter === targetNumber) {
-    alert("You win!");
-  }
+    if (counter === targetNumber) {
+      alert("You win!");
+    } else if (counter >= targetNumber) {
+      alert("You lost!");
+    }
 
-  else if (counter >= targetNumber) {
-    alert("You lost!");
-  }
-
-});
+  });
 
 // Attempted to recreate from start, then tried to use Crystal Exmaple code for a guide. 
 
 </script>
 </body>
 </html>
-
